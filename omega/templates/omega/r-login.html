@@ -1,0 +1,33 @@
+{% extends 'omega/regis.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<main class="form-signin">
+  <form method="POST">
+    {% csrf_token %}
+    <img class="mb-4" src="{% static 'omega/unsplash-photo-3.jpg' %}" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Sign In</h1>
+    <div class="form-floating">
+
+      <label>Email address</label>
+                {{ form.email.errors|striptags }}
+          {% render_field form.email type="email" class="form-control" placeholder="Email Address" %}
+    </div>
+    <div class="form-floating">
+
+      <label >Password</label>
+        {{ form.password.errors|striptags }}
+          {% render_field form.password type="password" class="form-control" placeholder="Password" %}
+      <small><a href="#">forgot your password?</a></small>
+    </div>
+
+    <div class="checkbox mb-3">
+    </div>
+    <button class="w-100 btn btn-lg btn-warning" type="submit">Log In</button>
+    <small><a href="#">Create an account</a></small>
+    <p class="mt-5 mb-3 text-muted">&copy; 2021 </p>
+  </form>
+</main>
+
+{% endblock %}

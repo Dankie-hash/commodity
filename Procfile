@@ -1,0 +1,1 @@
+web: gunicorn commodity.wsgi --log-file -
