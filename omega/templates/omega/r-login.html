@@ -10,22 +10,24 @@
     <h1 class="h3 mb-3 fw-normal">Sign In</h1>
     <div class="form-floating">
 
-      <label>Email address</label>
+
                 {{ form.email.errors|striptags }}
-          {% render_field form.email type="email" class="form-control" placeholder="Email Address" %}
+          {% render_field form.email type="email" id="p2" name="email" class="form-control" placeholder="Email Address" %}
+      <label for="p2">Email Address</label>
     </div>
     <div class="form-floating">
 
-      <label >Password</label>
+
         {{ form.password.errors|striptags }}
-          {% render_field form.password type="password" class="form-control" placeholder="Password" %}
+          {% render_field form.password type="password" id="p1" name="password"  class="form-control" placeholder="Password" %}
+      <label for="p1">Password</label>
       <small><a href="#">forgot your password?</a></small>
     </div>
 
     <div class="checkbox mb-3">
     </div>
     <button class="w-100 btn btn-lg btn-warning" type="submit">Log In</button>
-    <small><a href="#">Create an account</a></small>
+    <small><a href="{% url 'omega:signup' %}">Create an account</a></small>
     <p class="mt-5 mb-3 text-muted">&copy; 2021 </p>
   </form>
 </main>

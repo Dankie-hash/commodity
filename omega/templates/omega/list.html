@@ -38,7 +38,7 @@
         <section class="py-5 text-center container">
           <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-              <h1 class="fw-bold">Agricultural Commodities</h1>
+              <h1 class="fw-bold">{{category.name}}</h1>
             </div>
           </div>
         </section>
@@ -52,11 +52,16 @@
               {% for unit in object_list %}
               <div class="col">
                 <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+                  <!--
+                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                       role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef"
+                                                                                                     dy=".3em">Thumbnail</text></svg>
+-->
+                  <img src="{{unit.image.url}}" class="bd-placeholder-img card-img-top" width="100%" height="225" preserveAspectRatio="xMidYMid slice" focusable="false" >
                   <div class="card-body">
-                    <h5 class="card-title">{{unit.name}}</h5>
-                    <p class="card-text">{{unit.summary}}</p>
+                    <h5 class="card-title"><a class="text-decoration-none" href="{% url 'omega:detail' unit.pk %}">{{unit.name}}</a></h5>
+                    <p class="card-text">{{unit.current_price}}</p>
                     <div class="d-flex justify-content-between align-items-center">
                       {% if unit.available %}
                         <button type="button" class="btn btn-md btn-success">Available</button>
@@ -69,216 +74,20 @@
                 </div>
               </div>
               {% endfor %}
-
+              {% else %}
               <p>No {{unit.category.name}} commodities available.</p>
               {% endif %}
 
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
 
       </main>
 
-      <nav class="container text-center ml-5" aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">2</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
-
  <nav class="container text-center ml-5" aria-label="Page navigation example">
-        {% if is_paginated %}
+        {% if object_list %}
         <ul class="pagination">
-          {% if page_obj.has_previous %}
+          {% if object_list.has_previous %}
           <li class="page-item">
             <a class="page-link" href="?page={{page_obj.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
           </li>
@@ -286,13 +95,13 @@
           <li class="page-item disabled">
             <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
           </li>
-          {% endif %}{% for i in paginator.page_range %} {% if page_obj.number == i %}
+          {% endif %}{% for i in paginator.page_range %} {% if object_list.number == i %}
           <li class="page-item"><a class="page-link active">{{i}}</a></li>
           {% else %}
           <li class="page-item" aria-current="page">
             <a class="page-link" href="?page={{i}}">{{i}}</a>
           </li>
-          {% endif %}{% endfor %}{% if page_obj.has_next %}
+          {% endif %}{% endfor %}{% if object_list.has_next %}
           <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
           {% else %}
           <li class="page-item disabled">

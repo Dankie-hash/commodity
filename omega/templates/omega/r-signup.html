@@ -6,32 +6,34 @@
 {% block content %}
 
 <main class="form-signin">
-  <form method="POST">
+  <form method="POST" action="{% url 'omega:signup' %}">
     {% csrf_token %}
     <img class="mb-4" src="{% static 'omega/unsplash-photo-3.jpg' %}" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Account Registration</h1>
 
         <div class="form-floating mb-1">
-            <label>First Name</label>
-          {{ form.firstname.errors|striptags }}
-          {% render_field form.firstname type="text" id="i1" class="form-control" placeholder="First Name" %}
 
+          {{ form.first_name.errors|striptags }}
+          {% render_field form.first_name name="first_name" type="text" id="i1" class="form-control" placeholder="First Name" %}
+<label for="i1">First Name</label>
     </div>
 
     <div class="form-floating mb-1">
-            <label>Last Name</label>
-          {{ form.lastname.errors|striptags }}
-          {% render_field form.lastname type="text" class="form-control" placeholder="Last Name" %}
+
+          {{ form.last_name.errors|striptags }}
+          {% render_field form.last_name name="last_name" type="text" id="i2" class="form-control" placeholder="Last Name" %}
+        <label for="i2">Last Name</label>
     </div>
 
     <div class="form-floating mb-1">
-        <label>Email Address</label>
+
           {{ form.email.errors|striptags }}
-          {% render_field form.email type="email" class="form-control" placeholder="Email Address" %}
+          {% render_field form.email type="email" name="email" id="i3" class="form-control" placeholder="Email Address" %}
+        <label for="i3">Email Address</label>
     </div>
     <div class="checkbox mb-3">
     <button class="w-100 btn btn-lg btn-warning" type="submit">Register</button>
-    <small><a href="#">Login</a></small>
+    <small><a href="{% url 'omega:login' %}">Login</a></small>
     <p class="mt-5 mb-3 text-muted">&copy; 2021 </p>
   </form>
 </main>

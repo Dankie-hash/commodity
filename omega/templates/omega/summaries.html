@@ -53,6 +53,14 @@
       <div class="container py-3">
         <header>
 
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-primary" role="alert">
+            {{message}}
+          </div>
+          {% endfor %}
+          {% endif %}
+
           <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
             <h1 class="display-4 fw-normal">Commodities</h1>
             <p class="fs-5 text-muted">Select any of the categories below to view the available commodities.</p>
@@ -60,75 +68,30 @@
         </header>
 
         <main>
+
           <div class="row">
+              {% if object_list %}
+            {% for object in object_list %}
             <div class="col-md-6">
               <div class="card mb-4 rounded-3 shadow-sm border-secondary">
                 <div class="card-header py-3 text-white bg-secondary border-secondary">
-                  <h4 class="my-0 fw-normal">Live Stock and Meat</h4>
-                </div>
-                <div class="card-body">
-                   <ul class="list-unstyled mt-3 mb-4">
-                    <li>Category Summary</li>
-                    <li>Category Summary</li>
-                    <li>Category Summary</li>
-                    <li>Category Summary</li>
-                  </ul>
-                  <a class="button w-100 btn btn-lg btn-primary" href="{% url 'omega:list2' %}">View</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card mb-4 rounded-3 shadow-sm border-secondary">
-                <div class="card-header py-3 text-white bg-secondary border-secondary">
-                  <h4 class="my-0 fw-normal">Agriculture</h4>
+                  <h4 class="my-0 fw-normal">{{object.name}}</h4>
                 </div>
                 <div class="card-body">
                   <ul class="list-unstyled mt-3 mb-4">
-                    <li>Category Summary</li>
-                    <li>Category Summary</li>
-                    <li>Category Summary</li>
-                    <li>Category Summary</li>
-                  </ul>
-                  <a class="button w-100 btn btn-lg btn-primary" href="{% url 'omega:list' %}">View</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="card mb-4 rounded-3 shadow-sm border-secondary">
-                <div class="card-header py-3 text-white bg-secondary border-secondary">
-                  <h4 class="my-0 fw-normal">Metals</h4>
-                </div>
-                <div class="card-body">
-                  <ul class="list-unstyled mt-3 mb-4">
-                    <li>Category Summary</li>
+                    <li>{{object.description}}</li>
                     <li>Category Summary Item</li>
                     <li>Category Summary Item</li>
                     <li>Category Summary Item</li>
                   </ul>
-                  <a class="button w-100 btn btn-lg btn-primary" href="{% url 'omega:list3' %}">View</a>
+                  <a class="button w-100 btn btn-lg btn-primary" href="{{object.get_absolute_url}}">View</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="card mb-4 rounded-3 shadow-sm border-secondary">
-                <div class="card-header py-3 text-white bg-secondary border-secondary">
-                  <h4 class="my-0 fw-normal">Energy</h4>
-                </div>
-                <div class="card-body">
-                  <ul class="list-unstyled mt-3 mb-4">
-                    <li>Category Summary Item</li>
-                    <li>Category Summary Item</li>
-                    <li>Category Summary Item</li>
-                    <li>Category Summary Item</li>
-                  </ul>
-                  <a class="button w-100 btn btn-lg btn-primary" href="{% url 'omega:list4' %}">View</a>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
+            {% endif %}
           </div>
-          </div>
+
 
         </main>
 

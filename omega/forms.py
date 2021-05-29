@@ -30,19 +30,27 @@ class SearchForm(forms.Form):
 
 
 class CreateUserForm(UserCreationForm):
-    firstname = forms.CharField(max_length=150)
-    lastname = forms.CharField(max_length=150)
+    first_name = forms.CharField(max_length=150)
+    last_name = forms.CharField(max_length=150)
+    email = forms.EmailField(max_length=150)
+
     class Meta:
         model = User
-        fields = ('firstname', 'lastname', 'email')
+        fields = ['first_name', 'last_name', 'email']
 
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        if not email:
-            raise ValidationError('Email is required.')
-        if User.objects.filter(email=email).count():
-            raise ValidationError("This email is already registered.")
-        return email
+
+    def save(self,password, commit=True):
+        user = super(CreateUserForm, self).save(commit=False)
+        user.email = self.cleaned_data["email"]
+        user.first_name = self.cleaned_data["first_name"]
+        user.last_name = self.cleaned_data["last_name"]
+        user.password1 = password
+        user.password2 = password
+        user.username = self.cleaned_data["first_name"]
+
+        if commit:
+            user.save()
+            return user
 
 
 class CommodityForm(forms.ModelForm):

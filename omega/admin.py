@@ -1,6 +1,10 @@
 from django.contrib import admin
 from .models import *
-# Register your models here.
+from django import forms
+from django.contrib import admin
+
+
+
 
 admin.site.register(Category)
 admin.site.register(Commodity)

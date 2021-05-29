@@ -45,7 +45,7 @@
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <img class="bi me-2" width="40" height="32" src="{% static 'omega/unsplash-photo-3.jpg' %}">
+                <img class="bi me-2" width="40" height="32" src="{% static 'omega/logo.png' %}">
             </a>
     
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -60,21 +60,13 @@
               <li><a href="{{url}}" class="nav-link {% if request.path == url %} active {% endif %} px-2 text-white">Available</a></li>
                 {% url 'omega:summary' as url %}
               <li><a href="{{url}}" class="nav-link {% if request.path == url %} active {% endif %} px-2 text-white">Categories</a></li>
-                {% url 'home' as url %}
-              <li><a href="#" class="nav-link {% if request.path == url %} active {% endif %} px-2 text-white">FAQs</a></li>
                 {% endif %}
-                {% url 'omega:available' as url %}
-                <li><a href="{{url}}" class="nav-link {% if request.path == url %} active {% endif %} px-2 text-white">Available</a></li>
-                {% url 'omega:summary' as url %}
-                <li><a href="{{url}}" class="nav-link {% if request.path == url %} active {% endif %} px-2 text-white">Categories</a></li>
                 {% url 'home' as url %}
                 <li><a href="#" class="nav-link {% if request.path == url %} active {% endif %} px-2 text-danger">Contact</a></li>
 
                 {% url 'home' as url %}
               <li><a href="#" class="nav-link {% if request.path == url %} active {% endif %} px-2 text-danger">About</a></li>
-                   {% url 'omega:detail' as url %}
-              <li><a href="{{url}}" class="nav-link {% if request.path == url %} active {% endif %} px-2 text-warning">Unit Detail</a></li>
-            </ul>
+              </ul>
                 {% if not request.user.is_authenticated %}
 
                 {% else %}
@@ -82,9 +74,7 @@
               <input type="search" name="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
             </form>
                 {% endif %}
-                          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="#" method="GET">
-              <input type="search" name="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-            </form>
+
             <div class="text-end">
                 {% if not request.user.is_authenticated %}
               <a href="{% url 'omega:login' %}" class="btn btn-outline-light me-2">Login</a>
@@ -98,6 +88,7 @@
         </div>
       </header>
 
+
     {% block content %}
 
     {% endblock %}
@@ -109,7 +100,7 @@
       <footer class="container pt-4 my-md-5 pt-md-5 border-top mt-5">
         <div class="row">
           <div class="col-12 col-md">
-            <img class="mb-2" src="{% static 'omega/unsplash-photo-3.jpg' %}" alt="" width="24" height="19">
+            <img class="mb-2" src="{% static 'omega/logo.png' %}" alt="" width="24" height="19">
             <small class="d-block mb-3 text-muted">&copy; 2021</small>
           </div>
           <div class="col-6 col-md">

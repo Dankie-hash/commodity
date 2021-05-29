@@ -13,7 +13,8 @@
 
     <div class="form-floating">
       {{ form.email.errors|striptags }}
-      {% render_field form.email type="email" class="form-control" placeholder="Email Address" %}
+      {% render_field form.email type="email" id="p1" class="form-control" placeholder="Email Address" %}
+      <label for="p1">Email Address</label>
     </div>
     <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Send</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2021 </p>

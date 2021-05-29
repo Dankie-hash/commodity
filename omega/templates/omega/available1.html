@@ -52,11 +52,10 @@
               {% for unit in object_list %}
               <div class="col">
                 <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
+                  <img class="card-img-top" width="100%" height="225" src="{{unit.image.url}}">
                   <div class="card-body">
-                    <h5 class="card-title">{{unit.name}}</h5>
-                    <p class="card-text">{{unit.summary}}</p>
+                    <h5 class="card-title"><a href="{{unit.get_absolute_url}}" class="text-decoration-none">{{unit.name}}</a></h5>
+                    <p class="card-text">${{unit.current_price}}</p>
                     <div class="d-flex justify-content-between align-items-center">
                       {% if unit.available %}
                         <button type="button" class="btn btn-md btn-success">Available</button>
@@ -69,190 +68,10 @@
                 </div>
               </div>
               {% endfor %}
-
-              <p>No {{unit.category.name}} commodities available.</p>
+              {% else %}
+              <p>No commodities available.</p>
               {% endif %}
 
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Unit Name</h5>
-                    <p class="card-text">Commodity Unit Summary</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <button type="button" class="btn btn-md btn-success">Available</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
