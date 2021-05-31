@@ -63,4 +63,16 @@ class LoginForm(forms.Form):
     email = forms.CharField(max_length=150)
     password = forms.CharField(max_length=150)
 
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+    def save(self, user=None):
+        user_profile = super(UserProfileForm, self).save(commit=False)
+        if user:
+            user_profile.user = user
+        user_profile.save()
+        return user_profile
+
 

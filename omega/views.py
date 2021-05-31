@@ -44,6 +44,37 @@ def list(request):
 
     return render(request, 'omega/list.html')
 
+def profile(request):
+
+    return render(request, 'omega/profile.html')
+
+def contact(request):
+
+    return render(request, 'omega/contact.html')
+
+
+class NewUserProfileView(FormView):
+    template_name = "profiles/user_profile.html"
+    form_class = UserProfileForm
+
+    def form_valid(self, form):
+        form.save(self.request.user)
+        return super(NewUserProfileView, self).form_valid(form)
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse("some url name")
+
+def profile(request):
+
+    return render(request, 'omega/profile.html')
+
+def profile(request):
+
+    return render(request, 'omega/profile.html')
+
+def profile(request):
+
+    return render(request, 'omega/profile.html')
 
 def available(request):
 
