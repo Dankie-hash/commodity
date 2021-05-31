@@ -8,8 +8,15 @@
 <main class="form-signin">
   <form method="POST" action="{% url 'omega:signup' %}">
     {% csrf_token %}
-    <img class="mb-4" src="{% static 'omega/unsplash-photo-3.jpg' %}" alt="" width="72" height="57">
+    <img class="mb-4" src="{% static 'omega/logo.png' %}" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Account Registration</h1>
+                {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-danger" role="alert">
+            {{message}}
+          </div>
+          {% endfor %}
+          {% endif %}
 
         <div class="form-floating mb-1">
 

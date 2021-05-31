@@ -26,7 +26,10 @@ class CreateUserForm(UserCreationForm):
         return self.cleaned_data['email']
 
 class SearchForm(forms.Form):
-    query = forms.CharField(max_length=150)
+    query = forms.CharField(max_length=150, required=False)
+
+class PasswordForm(forms.Form):
+    email = forms.EmailField(max_length=150)
 
 
 class CreateUserForm(UserCreationForm):
@@ -68,11 +71,11 @@ class UserProfileForm(forms.ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'email')
 
-    def save(self, user=None):
-        user_profile = super(UserProfileForm, self).save(commit=False)
-        if user:
-            user_profile.user = user
-        user_profile.save()
-        return user_profile
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length = 50)
+    email = forms.EmailField(max_length = 150)
+    message = forms.CharField(widget = forms.Textarea, max_length = 2000)
 
 

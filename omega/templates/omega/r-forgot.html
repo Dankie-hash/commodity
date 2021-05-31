@@ -8,7 +8,7 @@
 <main class="form-signin">
   <form method="POST">
     {% csrf_token %}
-    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <img class="mb-4" src="{% static 'omega/logo.png' %}" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Enter Your Email Address</h1>
 
     <div class="form-floating">

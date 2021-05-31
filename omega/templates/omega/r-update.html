@@ -1,0 +1,47 @@
+{% extends 'omega/regis.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+
+<main class="form-signin">
+  <form method="POST">
+    {% csrf_token %}
+    <img class="mb-4" src="{% static 'omega/logo.png' %}" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Update Profile</h1>
+                {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-danger" role="alert">
+            {{message}}
+          </div>
+          {% endfor %}
+          {% endif %}
+
+        <div class="form-floating mb-1">
+
+          {{ form.first_name.errors|striptags }}
+          {% render_field form.first_name name="first_name" type="text" value="form.first_name" id="i1" class="form-control" placeholder="First Name" %}
+<label for="i1">First Name</label>
+    </div>
+
+    <div class="form-floating mb-1">
+
+          {{ form.last_name.errors|striptags }}
+          {% render_field form.last_name name="last_name" type="text" value="form.last_name" id="i2" class="form-control" placeholder="Last Name" %}
+        <label for="i2">Last Name</label>
+    </div>
+
+    <div class="form-floating mb-1">
+
+          {{ form.email.errors|striptags }}
+          {% render_field form.email type="email" name="email" value="form.email" id="i3" class="form-control" placeholder="Email Address" %}
+        <label for="i3">Email Address</label>
+    </div>
+    <div class="checkbox mb-3">
+    <button class="w-100 btn btn-lg btn-warning" type="submit">Update</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2021 </p>
+  </form>
+</main>
+
+{% endblock %}

@@ -17,7 +17,9 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.core.mail import send_mail
 from easy_password_generator import PassGen
-
+from django.views.generic import FormView
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
 
 from .forms import *
 from django.views.generic import (
@@ -48,33 +50,59 @@ def profile(request):
 
     return render(request, 'omega/profile.html')
 
+
+
+
+def update(request):
+    if request.method == 'POST':
+        f = UserProfileForm(request.POST, instance=request.user)
+        if f.is_valid():
+            f.save()
+            messages.success(request,'Your Profile has been updated!')
+            return redirect('omega:profile')
+    else:
+        f = UserProfileForm(instance=request.user)
+
+    context={'form': f}
+    return render(request, 'omega/r-update.html', context)
+
+
 def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = "Website Inquiry"
+            body = {
+                'name': form.cleaned_data['name'],
+                'email': form.cleaned_data['email'],
+                'message': form.cleaned_data['message'],
+            }
+            message = "\n".join(body.values())
 
-    return render(request, 'omega/contact.html')
+            try:
+                send_mail(subject, message, 'sf.rodneydlamini@gmail.com', ['sf.bbb@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect("omega:summary")
 
+    form = ContactForm()
+    return render(request, "omega/communication.html", {'form': form})
 
-class NewUserProfileView(FormView):
-    template_name = "profiles/user_profile.html"
-    form_class = UserProfileForm
-
-    def form_valid(self, form):
-        form.save(self.request.user)
-        return super(NewUserProfileView, self).form_valid(form)
-
-    def get_success_url(self, *args, **kwargs):
-        return reverse("some url name")
+def my_mail(request):
+    subject = "Greetings from Programink"
+    msg     = "Learn Django at Programink.com"
+    to      = "hello@programink.com"
+    res     = send_mail(subject, msg, settings.EMAIL_HOST_USER, [to])
+    if(res == 1):
+        msg = "Mail Sent Successfully."
+    else:
+        msg = "Mail Sending Failed."
+    return HttpResponse(msg)
 
 def profile(request):
 
     return render(request, 'omega/profile.html')
 
-def profile(request):
-
-    return render(request, 'omega/profile.html')
-
-def profile(request):
-
-    return render(request, 'omega/profile.html')
 
 def available(request):
 
@@ -101,19 +129,43 @@ def welcome(request):
 
 class SearchResultsView(ListView):
     model = Commodity
-    template_name = 'omega/available.html'
+    template_name = 'omega/search.html'
+    paginate_by = 12
 
     def get_queryset(self):
         name = self.kwargs.get('search', '')
-        object_list = self.objects.all()
+        object_list = Commodity.objects.all()
         if name:
             object_list = object_list.filter(name__icontains=name)
         return object_list
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.kwargs.get('search', '')
+        return context
 
-        return query
+
+def search(request):
+    post_list = []
+    try:
+        query = request.GET.get('search')
+    except:
+        query = ''
+    if query:
+        post_list = Commodity.objects.filter(name__icontains=query)
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(post_list, 10)
+    try:
+        object_list = paginator.page(page)
+    except PageNotAnInteger:
+        object_list = paginator.page(1)
+    except EmptyPage:
+        object_list = paginator.page(paginator.num_pages)
 
 
+
+    return render(request, 'omega/search.html', {'object_list': object_list, 'query': query})
 
 class AvailableView(ListView):
     model = Commodity
@@ -253,4 +305,35 @@ def login(request):
             messages.error(request, 'Error wrong username/password')
 
     return render(request, 'omega/r-login.html', {'form': f})
+
+
+def password_reset_request(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        associated_users = User.objects.filter(email=email)
+        if associated_users.exists():
+            for user in associated_users:
+                subject = "Password Reset Requested"
+                email_template_name = "omega/password/password_reset_email.txt"
+                c = {
+                    "email": user.email,
+                    'domain': '127.0.0.1:8000',
+                    'site_name': 'Website',
+                    "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': default_token_generator.make_token(user),
+                    'protocol': 'http',
+                }
+                email = render_to_string(email_template_name, c)
+                try:
+                    send_mail(subject, email, 'admin@example.com', [user.email], fail_silently=False)
+                except BadHeaderError:
+
+                    return HttpResponse('Invalid header found.')
+
+                messages.success(request, 'A message with reset password instructions has been sent to your inbox.')
+                return redirect("omega:index")
+            messages.error(request, 'An invalid email has been entered.')
+
+    return render(request=request, template_name="main/r-forgot.html",
+                  context={"form": 'form'})
 
