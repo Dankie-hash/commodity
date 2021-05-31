@@ -30,6 +30,13 @@
 
 <div class="b-example-divider"></div>
   <div class="container pt-5">
+      {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-danger" role="alert">
+            {{message}}
+          </div>
+          {% endfor %}
+          {% endif %}
     <main mt-5 pt-5>
       <div class="py-5 pl-5 ml-5">
         <h2 class="ml-4">Contact Us </h2>

@@ -31,7 +31,14 @@
       <div class="b-example-divider"></div>
 
       <main>
-        <h1 class="visually-hidden">Heroes examples</h1>
+        {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-danger" role="alert">
+            {{message}}
+          </div>
+          {% endfor %}
+          {% endif %}
+        <h1 class="visually-hidden"></h1>
 
         <div class="px-4 py-5 my-5 text-center">
           <img class="d-block mx-auto mb-4" src="{% static 'omega/logo.png' %}" width="72" height="57">

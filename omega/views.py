@@ -270,7 +270,7 @@ def signup(request):
                     last_name=last_name)
             b.save()
         except:
-            messages.warning(request, 'This user already exists.')
+            messages.warning(request, 'This user is already registered.')
             return redirect('omega:signup')
         user = auth.authenticate(username=username, password=password)
 

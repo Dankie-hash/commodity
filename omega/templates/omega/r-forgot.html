@@ -10,6 +10,13 @@
     {% csrf_token %}
     <img class="mb-4" src="{% static 'omega/logo.png' %}" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Enter Your Email Address</h1>
+    {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-danger" role="alert">
+            {{message}}
+          </div>
+          {% endfor %}
+          {% endif %}
 
     <div class="form-floating">
       {{ form.email.errors|striptags }}
