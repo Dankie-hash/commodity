@@ -86,9 +86,7 @@
 
       </main>
 
-
-
- <nav class="container text-center ml-5" aria-label="Page navigation example">
+<nav class="container text-center ml-5" aria-label="Page navigation example">
         {% if object_list %}
         <ul class="pagination">
           {% if object_list.has_previous %}
@@ -116,5 +114,34 @@
         {% endif %}
       </nav>
 
+<!--
+ <nav class="container text-center ml-5" aria-label="Page navigation example">
+        {% if object_list %}
+        <ul class="pagination">
+          {% if object_list.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{page_obj.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          {% endif %}{% for i in paginator.page_range %} {% if object_list.number == i %}
+          <li class="page-item"><a class="page-link active">{{i}}</a></li>
+          {% else %}
+          <li class="page-item" aria-current="page">
+            <a class="page-link" href="?page={{i}}">{{i}}</a>
+          </li>
+          {% endif %}{% endfor %}{% if object_list.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+          </li>
+          {% endif %}
+        </ul>
+        {% endif %}
+      </nav>
+-->
 
 {% endblock %}
