@@ -12,6 +12,9 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
 
+    class Meta:
+        verbose_name_plural = "categories"
+
     def __str__(self):
         return self.name
 
@@ -32,6 +35,9 @@ class Commodity(models.Model):
     image = models.ImageField(upload_to='commodities/')
 
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        verbose_name_plural = "Commodities"
 
     def __str__(self):
         return self.name
